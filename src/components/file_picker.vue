@@ -150,9 +150,9 @@ export default {
           size: 'dir',
           name: '..'
       }].concat(
-        json.files.filter((entry) => {
-          return ((this.show_hidden) ? true : (! entry.name.startsWith('.')))
-        })
+        json.files
+        .filter((entry) => (this.show_hidden ? true : !entry.name.startsWith('.')))
+        .sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }))
       );
       this.loading = false;
       this.error = false;
